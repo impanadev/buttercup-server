@@ -14,8 +14,8 @@ namespace ButtercupServer.Data
         {
         }
 
-        public DbSet<UserData> UserDatas { get; set; }
-        public DbSet<VaultData> VaultDatas { get; set; }
+        public DbSet<UserData> UserData { get; set; }
+        public DbSet<VaultData> VaultData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
