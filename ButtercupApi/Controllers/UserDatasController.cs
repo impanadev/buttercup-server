@@ -44,9 +44,9 @@ namespace ButtercupApi.Controllers
         // PUT: api/UserDatas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserData(long id, UserData userData)
+        public async Task<IActionResult> PutUserData(string id, UserData userData)
         {
-            if (id != userData.tideUID)
+            if (!id.Equals(userData.tideUID))
             {
                 return BadRequest();
             }
@@ -77,6 +77,7 @@ namespace ButtercupApi.Controllers
         [HttpPost]
         public async Task<ActionResult<UserData>> PostUserData(UserData userData)
         {
+            Console.WriteLine("Let's see what we have!", userData.vaultData.ToString());
             _context.UserDatas.Add(userData);
             await _context.SaveChangesAsync();
 
@@ -99,9 +100,9 @@ namespace ButtercupApi.Controllers
             return NoContent();
         }
 
-        private bool UserDataExists(long id)
+        private bool UserDataExists(string id)
         {
-            return _context.UserDatas.Any(e => e.tideUID == id);
+            return _context.UserDatas.Any(e => e.tideUID.Equals(id));
         }
     }
 }
