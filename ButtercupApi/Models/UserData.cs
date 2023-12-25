@@ -4,7 +4,8 @@ namespace ButtercupAPI.Models;
 public class UserData
 {
     [Key]
-	public long tideUID {get;set;}
+	public string tideUID {get;set;} = default!;
 	public string vaultName {get; set;}
 	public string vaultData {get; set;}
+
 }

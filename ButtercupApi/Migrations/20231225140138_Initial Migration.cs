@@ -14,8 +14,7 @@ namespace ButtercupApi.Migrations
                 name: "UserDatas",
                 columns: table => new
                 {
-                    tideUID = table.Column<long>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    tideUID = table.Column<string>(type: "TEXT", nullable: false),
                     vaultName = table.Column<string>(type: "TEXT", nullable: false),
                     vaultData = table.Column<string>(type: "TEXT", nullable: false)
                 },

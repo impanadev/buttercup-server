@@ -29,7 +29,7 @@ namespace ButtercupApi.Controllers
 
         // GET: api/UserDatas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserData>> GetUserData(long id)
+        public async Task<ActionResult<UserData>> GetUserData(string id)
         {
             var userData = await _context.UserDatas.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace ButtercupApi.Controllers
         // PUT: api/UserDatas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserData(long id, UserData userData)
+        public async Task<IActionResult> PutUserData(string id, UserData userData)
         {
             if (id != userData.tideUID)
             {
@@ -78,14 +78,28 @@ namespace ButtercupApi.Controllers
         public async Task<ActionResult<UserData>> PostUserData(UserData userData)
         {
             _context.UserDatas.Add(userData);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (UserDataExists(userData.tideUID))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return CreatedAtAction("GetUserData", new { id = userData.tideUID }, userData);
         }
 
         // DELETE: api/UserDatas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserData(long id)
+        public async Task<IActionResult> DeleteUserData(string id)
         {
             var userData = await _context.UserDatas.FindAsync(id);
             if (userData == null)
@@ -99,7 +113,7 @@ namespace ButtercupApi.Controllers
             return NoContent();
         }
 
-        private bool UserDataExists(long id)
+        private bool UserDataExists(string id)
         {
             return _context.UserDatas.Any(e => e.tideUID == id);
         }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ButtercupApi.Migrations
 {
     [DbContext(typeof(UserDataContext))]
-    [Migration("20231225134859_Initial Migration")]
+    [Migration("20231225140138_Initial Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -21,9 +21,8 @@ namespace ButtercupApi.Migrations
 
             modelBuilder.Entity("ButtercupAPI.Models.UserData", b =>
                 {
-                    b.Property<long>("tideUID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("tideUID")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("vaultData")
                         .IsRequired()
