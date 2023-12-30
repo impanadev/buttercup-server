@@ -1,0 +1,28 @@
+{
+    "name": "buttercup-server-client",
+    "version": "1.0.0",
+    "description": "Basic client for Buttercup database server",
+    "exports": "./dist/index.js",
+    "react-native": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "clean": "rimraf dist",
+        "format": "prettier --write '{source,test}/**/*.{js,ts}'",
+        "prepublishOnly": "npm run build"
+    },
+    "devDependencies": {
+        "@types/node": "^20.9.0",
+        "c8": "^8.0.1",
+        "chai": "^4.3.10",
+        "fetch-headers": "^3.0.1",
+        "husky": "^4.3.8",
+        "lint-staged": "^15.0.2",
+        "mocha": "^10.2.0",
+        "prettier": "^3.0.3",
+        "rimraf": "^5.0.5",
+        "sinon": "^17.0.1",
+        "typescript": "^5.2.2"
+    }
+}
