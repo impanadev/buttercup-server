@@ -1,17 +1,17 @@
 import https from "https";
-import { PathIdentifier } from "../types.js";
+import { FileIdentifier, PathIdentifier } from "../types.js";
 const axios = require("axios");
 
 
 export interface InternalGetFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;
-    pathIdentifier: PathIdentifier;
+    pathIdentifier?: PathIdentifier
 }
 
-export async function getFileContents(options: InternalGetFileContentsOptions): Promise<string> {
+export async function getFileContents(options: InternalGetFileContentsOptions): Promise<FileIdentifier> {
     const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<FileIdentifier>((resolve, reject) => {
         axios
             .get(options.databaseURL + "api/UserDatas/" + options.databaseUUID, { httpsAgent })
             .then(response => {
@@ -19,7 +19,7 @@ export async function getFileContents(options: InternalGetFileContentsOptions): 
                 console.log("Getting File Data!");
                 if (response.status == 200 || response.status == 201) {
                     const data = response.data;
-                    resolve(data.vaultData as string);
+                    resolve({ identifier: "VaultData", name: data.vaultData as string } as FileIdentifier);
                 }
             })
             .catch(error => {

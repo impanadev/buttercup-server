@@ -1,7 +1,7 @@
-import { PathIdentifier } from "../types.js";
+import { FileIdentifier, PathIdentifier } from "../types.js";
 export interface InternalGetFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;
-    pathIdentifier: PathIdentifier;
+    pathIdentifier?: PathIdentifier;
 }
-export declare function getFileContents(options: InternalGetFileContentsOptions): Promise<string>;
+export declare function getFileContents(options: InternalGetFileContentsOptions): Promise<FileIdentifier>;

@@ -10,7 +10,7 @@ export async function getFileContents(options) {
             console.log("Getting File Data!");
             if (response.status == 200 || response.status == 201) {
                 const data = response.data;
-                resolve(data.vaultData);
+                resolve({ identifier: "VaultData", name: data.vaultData });
             }
         })
             .catch(error => {

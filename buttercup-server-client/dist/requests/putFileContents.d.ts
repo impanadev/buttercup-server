@@ -1,9 +1,8 @@
-import { FileIdentifier, PathIdentifier } from "../types.js";
+/// <reference types="node" />
 export interface InternalPutFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;
-    parentPathIdentifier: PathIdentifier;
-    fileIdentifier: FileIdentifier;
-    data: string;
+    fileIdentifier: string;
+    encryptedData: string | Buffer;
 }
-export declare function putFileContents(options: InternalPutFileContentsOptions): Promise<FileIdentifier>;
+export declare function putFileContents(options: InternalPutFileContentsOptions): Promise<string>;
