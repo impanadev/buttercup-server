@@ -1,4 +1,4 @@
-import { FileIdentifier, PathIdentifier } from "../client";
+import { FileIdentifier, PathIdentifier } from "../types.js";
 export interface InternalPutFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;

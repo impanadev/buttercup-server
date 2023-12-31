@@ -1,4 +1,4 @@
-import { PathIdentifier } from "../client";
+import { PathIdentifier } from "../types.js";
 export interface InternalGetFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;

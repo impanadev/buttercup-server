@@ -1,5 +1,5 @@
 import https from "https";
-import { FileItem, PathIdentifier } from "../client";
+import { FileItem, PathIdentifier } from "../types.js";
 const axios = require("axios");
 
 

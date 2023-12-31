@@ -1,5 +1,5 @@
 import https from "https";
-import { FileIdentifier, PathIdentifier } from "../client";
+import { FileIdentifier, PathIdentifier } from "../types.js";
 const axios = require("axios");
 
 export interface InternalPutFileContentsOptions {
