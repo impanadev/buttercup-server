@@ -6,7 +6,7 @@ export interface InternalPutFileContentsOptions {
     databaseURL: string;
     databaseUUID: string;
     fileIdentifier: string;
-    encryptedData: string | Buffer;
+    encryptedData: string;
 }
 
 export async function putFileContents(options: InternalPutFileContentsOptions): Promise<string> {
@@ -24,6 +24,6 @@ export async function putFileContents(options: InternalPutFileContentsOptions): 
             .catch(error => {
                 reject("Error Occured: " + String(error));
             });
-        resolve("Success");
+        resolve(jsonData.vaultData);
     });
 }

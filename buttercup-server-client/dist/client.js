@@ -1,8 +1,15 @@
+import { isUndefined } from "util";
 import { getDirectoryContents } from "./requests/getDirectoryContents.js";
 import { getFileContents } from "./requests/getFileContents.js";
 import { putFileContents } from "./requests/putFileContents.js";
 export class ButtercupServerClient {
     constructor(databaseURL, token) {
+        if (isUndefined(token)) {
+            throw new Error("Token is undefined");
+        }
+        else {
+            console.log("Token: ", token);
+        }
         this.uuid = this.getUID(token);
         this.url = databaseURL;
     }

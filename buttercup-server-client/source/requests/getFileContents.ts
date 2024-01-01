@@ -9,9 +9,9 @@ export interface InternalGetFileContentsOptions {
     pathIdentifier?: PathIdentifier
 }
 
-export async function getFileContents(options: InternalGetFileContentsOptions): Promise<FileIdentifier> {
+export async function getFileContents(options: InternalGetFileContentsOptions): Promise<string> {
     const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-    return new Promise<FileIdentifier>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         axios
             .get(options.databaseURL + "api/UserDatas/" + options.databaseUUID, { httpsAgent })
             .then(response => {
@@ -19,7 +19,7 @@ export async function getFileContents(options: InternalGetFileContentsOptions): 
                 console.log("Getting File Data!");
                 if (response.status == 200 || response.status == 201) {
                     const data = response.data;
-                    resolve({ identifier: "VaultData", name: data.vaultData as string } as FileIdentifier);
+                    resolve(data);
                 }
             })
             .catch(error => {

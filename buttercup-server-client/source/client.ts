@@ -1,3 +1,4 @@
+import { isUndefined } from "util";
 import { getDirectoryContents } from "./requests/getDirectoryContents.js";
 import { getFileContents } from "./requests/getFileContents.js";
 import { putFileContents } from "./requests/putFileContents.js";
@@ -8,6 +9,12 @@ export class ButtercupServerClient {
     url: string;
 
     constructor(databaseURL: string, token: string) {
+        if (isUndefined(token)) {
+            throw new Error("Token is undefined");
+        } else {
+            console.log("Token: ", token);
+        }
+
         this.uuid = this.getUID(token);
         this.url = databaseURL;
     }
@@ -35,7 +42,7 @@ export class ButtercupServerClient {
         });
     }
 
-    async getFileContents(pathIdentifier?: PathIdentifier): Promise<FileIdentifier> {
+    async getFileContents(pathIdentifier?: PathIdentifier): Promise<string> {
         return getFileContents({
             databaseURL: this.url,
             databaseUUID: this.uuid,
@@ -43,7 +50,7 @@ export class ButtercupServerClient {
         });
     }
 
-    async putFileContents(fileIdentifier: string, encryptedData: string | Buffer) {
+    async putFileContents(fileIdentifier: string, encryptedData: string): Promise<string> {
         return putFileContents({
             databaseURL: this.url,
             databaseUUID: this.uuid,

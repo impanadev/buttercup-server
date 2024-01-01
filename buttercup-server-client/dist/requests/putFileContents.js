@@ -15,6 +15,6 @@ export async function putFileContents(options) {
             .catch(error => {
             reject("Error Occured: " + String(error));
         });
-        resolve("Success");
+        resolve(jsonData.vaultData);
     });
 }

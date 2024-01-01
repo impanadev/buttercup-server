@@ -1,5 +1,4 @@
-/// <reference types="node" />
-import { FileIdentifier, FileItem, PathIdentifier } from "./types.js";
+import { FileItem, PathIdentifier } from "./types.js";
 export declare class ButtercupServerClient {
     uuid: string;
     url: string;
@@ -7,6 +6,6 @@ export declare class ButtercupServerClient {
     getUID(jwt: any): any;
     private base64UrlToBase64;
     getDirectoryContent(pathIdentifier?: PathIdentifier): Promise<Array<FileItem>>;
-    getFileContents(pathIdentifier?: PathIdentifier): Promise<FileIdentifier>;
-    putFileContents(fileIdentifier: string, encryptedData: string | Buffer): Promise<string>;
+    getFileContents(pathIdentifier?: PathIdentifier): Promise<string>;
+    putFileContents(fileIdentifier: string, encryptedData: string): Promise<string>;
 }
