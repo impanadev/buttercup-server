@@ -3,7 +3,7 @@ import { getDirectoryContents } from "./requests/getDirectoryContents.js";
 import { getFileContents } from "./requests/getFileContents.js";
 import { putFileContents } from "./requests/putFileContents.js";
 export class ButtercupServerClient {
-    constructor(databaseURL, token) {
+    constructor(path, token) {
         if (isUndefined(token)) {
             throw new Error("Token is undefined");
         }
@@ -11,7 +11,7 @@ export class ButtercupServerClient {
             console.log("Token: ", token);
         }
         this.uuid = this.getUID(token);
-        this.url = databaseURL;
+        this.url = path.identifier.toString();
     }
     getUID(jwt) {
         var p = jwt.split(".")[1];
@@ -41,6 +41,7 @@ export class ButtercupServerClient {
         });
     }
     async putFileContents(fileIdentifier, encryptedData) {
+        console.log("Buttercupclient client.ts check");
         return putFileContents({
             databaseURL: this.url,
             databaseUUID: this.uuid,

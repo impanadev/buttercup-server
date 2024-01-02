@@ -8,7 +8,7 @@ export class ButtercupServerClient {
     uuid: string;
     url: string;
 
-    constructor(databaseURL: string, token: string) {
+    constructor(path: PathIdentifier, token: string) {
         if (isUndefined(token)) {
             throw new Error("Token is undefined");
         } else {
@@ -16,7 +16,7 @@ export class ButtercupServerClient {
         }
 
         this.uuid = this.getUID(token);
-        this.url = databaseURL;
+        this.url = path.identifier.toString();
     }
 
     getUID(jwt) {
@@ -51,6 +51,7 @@ export class ButtercupServerClient {
     }
 
     async putFileContents(fileIdentifier: string, encryptedData: string): Promise<string> {
+        console.log("Buttercupclient client.ts check");
         return putFileContents({
             databaseURL: this.url,
             databaseUUID: this.uuid,
