@@ -9,7 +9,8 @@ export async function getFileContents(options) {
             console.log(response);
             console.log("Getting File Data!");
             if (response.status == 200 || response.status == 201) {
-                const data = response.data;
+                const data = response.data.vaultData;
+                console.log(data);
                 resolve(data);
             }
         })
